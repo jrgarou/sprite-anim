@@ -1,0 +1,24 @@
+{
+  "name": "sprite-anim",
+  "homepage": "https://github.com/jrgarou/sprite-anim",
+  "authors": [
+    "Garou <jrgarou@gmail.com>"
+  ],
+  "description": "Background sprite animation",
+  "main": "./src/sprite-anim.js",
+  "keywords": [
+    "sprite",
+    "animation",
+    "css",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": false
+}
