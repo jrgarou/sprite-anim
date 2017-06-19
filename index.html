@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Sprite Animation</title>
+    <meta name="description" content="Background sprite animation">
+    <meta name="keywords" content="garou">
+    <meta name="author" content="www.garou.in">
+    <meta name="viewport" content="width=800">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,900' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+           font-family: 'Roboto';
+           text-align: center;
+         }
+         .main {
+           border: 20px solid black;
+           padding: 80px;
+         }
+         .main-header {
+           border-bottom: 1px solid black;
+           margin: 0 0 120px;
+           padding: 0 0 30px;
+         }
+         .main-title {
+           font-size: 20px;
+         }
+         .main-decription {
+           font-size: 20px;
+         }
+         .main-title {
+           font-size: 45px;
+         }
+         .main-subtitle {
+           font-size: 25px;
+           margin: 0 0 30px;
+         }
+         .code {
+           background: #f1f1f1;
+           display: inline-block;
+           font-size: 14px;
+           line-height: 28px;
+           margin: 10px 0 30px;
+           padding: 40px;
+           text-align: left;
+         }
+         .code small{
+           font-size: 12px;
+           color: #888;
+         }
+         .sprite-anim {
+           background-color: #f1f1f1;
+           margin: 20px auto 0;
+         }
+         .group .sprite-anim {
+           display: inline-block;
+         }
+         hr {
+           margin: 100px 0;
+         }
+         img {
+           display: block;
+           margin: 0 auto;
+           max-width: 500px;
+         }
+         .button {
+           background: #2980b9;
+           border: 0;
+           color: white;
+           cursor: crosshair;
+           display: block;
+           margin: 30px auto;
+           padding: 10px;
+           text-transform: uppercase;
+         }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+      <header class="main-header">
+        <h1 class="main-title">Sprite Animation</h1>
+        <h2 class="main-subtitle">Background sprite animation</h2>
+      </header>
+      <div class="main-content">
+        <h3 class="main-subtitle">All options</h3>
+        <div class="code">
+          var config = {<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;element: document.getElementsByClassName('myanim')[0],<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;image: 'sprites/sprite04_64x64.png',<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;width: 64,<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;height: 64,<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;rows: '7', <small>// It changed because it set .collumn_start</small><br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;speed: 60,<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;over: true, <small>// Default false and trigger when visible on scroll</small><br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;rewind_out: true, <small>// Rewind on mouse out</small><br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;element_over: document.getElementsByClassName('main_button')[0], <small>// Set element to trigger animation</small><br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;row_start: 1<br>
+               &ensp;&ensp;&ensp;&ensp;&ensp;collumn_start: 2 <small>// Must change .rows. 9 to 7</small><br>
+          };<br>
+          var spriteanim_min = new SpriteAnim(config);<br>
+        </div>
+          <img src="sprites/sprite04_64x64.png" />
+          <div class="sprite-anim main_example"></div>
+          <button class="button main_button">Mouseover to start</button>
+        <hr>
+        <h3 class="main-subtitle">Min. configuration: </h3>
+        <div class="code">
+          var config_min, spriteanim_min;<br>
+          var config_min = {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element: document.getElementsByClassName('config_min')[0],<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: 'sprites/sprite01_180x204_11por9.png',<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 180,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 204,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rows: '11,11,11,11,11,11,11,11,2',<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;speed: 25,<br>
+          };<br>
+          spriteanim_min = new SpriteAnim(config_min);
+          <br>
+          <br>
+          <p>Trigger animation when visible on scroll</p>
+        </div>
+        <img src="sprites/sprite01_180x204_11por9.png" />
+        <div class="sprite-anim config_min"></div>
+      </div>
+      <hr>
+      <h3 class="main-subtitle">Mouse over option and with rewind option: </h3>
+      <div class="code">{ over: true } <br/> { over: true, rewind_out: true }</div>
+      <div class="group">
+        <div class="sprite-anim config_over"></div>
+        <div class="sprite-anim rewind_out"></div>
+      </div>
+      <hr>
+      <button class="button element_over_button">Mouseover to start</button>
+      <div class="group">
+        <div class="sprite-anim element_over01"></div>
+        <div class="sprite-anim element_over02"></div>
+        <div class="sprite-anim element_over03"></div>
+        <div class="sprite-anim element_over04"></div>
+      </div>
+    </div>
+
+  <script type="text/javascript" src="./src/sprite-animation.js"></script>
+  <script>
+    window.onload = function (e) {
+      var spriteanimation_config, spriteanim;
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('main_example')[0],
+        image: 'sprites/sprite04_64x64.png',
+        width: 64,
+        height: 64,
+        rows: '7',
+        speed: 60,
+        over: true,
+        rewind_out: true,
+        row_start: 1,
+        column_start: 2,
+        element_over: document.getElementsByClassName('main_button')[0],
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('config_min')[0],
+        image: 'sprites/sprite01_180x204_11por9.png',
+        width: 180,
+        height: 204,
+        rows: '11,11,11,11,11,11,11,11,2',
+        speed: 25,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('config_over')[0],
+        image: 'sprites/sprite02_280x280_14por7.png',
+        width: 280,
+        height: 280,
+        rows: '14,14,14,14,14,14,5',
+        speed: 25,
+        over: true,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('rewind_out')[0],
+        image: 'sprites/sprite02_280x280_14por7.png',
+        width: 280,
+        height: 280,
+        rows: '14,14,14,14,14,14,5',
+        speed: 25,
+        over: true,
+        rewind_out: true,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('element_over01')[0],
+        image: 'sprites/sprite04_64x64.png',
+        width: 64,
+        height: 64,
+        rows: '9',
+        speed: 80,
+        over: true,
+        rewind_out: true,
+        element_over: document.getElementsByClassName('element_over_button')[0],
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('element_over02')[0],
+        image: 'sprites/sprite04_64x64.png',
+        width: 64,
+        height: 64,
+        rows: '9',
+        speed: 80,
+        over: true,
+        rewind_out: true,
+        element_over: document.getElementsByClassName('element_over_button')[0],
+        row_start: 1,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('element_over03')[0],
+        image: 'sprites/sprite04_64x64.png',
+        width: 64,
+        height: 64,
+        rows: '9',
+        speed: 80,
+        over: true,
+        rewind_out: true,
+        element_over: document.getElementsByClassName('element_over_button')[0],
+        row_start: 2,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('element_over04')[0],
+        image: 'sprites/sprite04_64x64.png',
+        width: 64,
+        height: 64,
+        rows: '9',
+        speed: 80,
+        over: true,
+        rewind_out: true,
+        element_over: document.getElementsByClassName('element_over_button')[0],
+        row_start: 3,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+    }
+  </script>
+</body>
+</html>
