@@ -1,6 +1,6 @@
 #sprite-anim
 ================
-Animates sprite images
+Background sprite animation
 
 ## Setup
 `<div class="myanim"></div>`
