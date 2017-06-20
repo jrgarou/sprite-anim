@@ -138,7 +138,7 @@ SpriteAnim.prototype.return = function () {
 
     self.interval = setInterval(function() {
         self.rewind();
-    }, (self.speed/1.5));
+    }, (self.speed));
 
 };
 
