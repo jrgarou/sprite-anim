@@ -74,13 +74,12 @@ SpriteAnim.prototype.config = function () {
           element_over.addEventListener('mouseout', self.pause.bind(self));
       }
   } else {
-      window.onscroll = function (e) {
-          var y = window.scrollY,
-              play = (y + window.innerHeight) > self.top && y < (self.top + self.height);
-
-          (play) ? self.play() : self.stop();
-      }
-      window.onscroll();
+      window.addEventListener('scroll', function (e) {
+        var y = window.scrollY,
+            play = (y + window.innerHeight) > self.top && y < (self.top + self.height);
+        (play) ? self.play() : self.stop();
+      });
+      window.scrollTo(window.scrollX, window.scrollY-1);
   }
 }
 

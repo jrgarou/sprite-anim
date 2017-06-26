@@ -127,6 +127,10 @@
         </div>
         <img src="sprites/sprite01_180x204_11por9.png" />
         <div class="sprite-anim config_min"></div>
+        <div class="sprite-anim config_min"></div>
+        <div class="sprite-anim config_min"></div>
+        <div class="sprite-anim config_min"></div>
+        <div class="sprite-anim config_min"></div>
       </div>
       <hr>
       <h3 class="main-subtitle">Mouse over option and with rewind option: </h3>
@@ -176,13 +180,32 @@
       spriteanim = new SpriteAnim(spriteanimation_config);
 
       spriteanimation_config = {
-        element: document.getElementsByClassName('config_over')[0],
-        image: 'sprites/sprite02_280x280_14por7.png',
-        width: 280,
-        height: 280,
-        rows: '14,14,14,14,14,14,5',
+        element: document.getElementsByClassName('config_min')[1],
+        image: 'sprites/sprite01_180x204_11por9.png',
+        width: 180,
+        height: 204,
+        rows: '11,11,11,11,11,11,11,11,2',
         speed: 25,
-        over: true,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('config_min')[2],
+        image: 'sprites/sprite01_180x204_11por9.png',
+        width: 180,
+        height: 204,
+        rows: '11,11,11,11,11,11,11,11,2',
+        speed: 25,
+      };
+      spriteanim = new SpriteAnim(spriteanimation_config);
+
+      spriteanimation_config = {
+        element: document.getElementsByClassName('config_min')[3],
+        image: 'sprites/sprite01_180x204_11por9.png',
+        width: 180,
+        height: 204,
+        rows: '11,11,11,11,11,11,11,11,2',
+        speed: 25,
       };
       spriteanim = new SpriteAnim(spriteanimation_config);
 
