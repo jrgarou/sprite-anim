@@ -1,0 +1,21 @@
+{
+  "name": "sprite-anim",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrgarou/sprite-anim"
+  },
+  "authors": [
+    "Garou <jrgarou@gmail.com>"
+  ],
+  "version": "1.0.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.4"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

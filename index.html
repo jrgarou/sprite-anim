@@ -3,82 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Sprite Animation</title>
+    <title>Sprite Anim</title>
     <meta name="description" content="Background sprite animation">
     <meta name="keywords" content="garou">
     <meta name="author" content="www.garou.in">
     <meta name="viewport" content="width=800">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,900' rel='stylesheet' type='text/css'>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-           font-family: 'Roboto';
-           text-align: center;
-         }
-         .main {
-           border: 20px solid black;
-           padding: 80px;
-         }
-         .main-header {
-           border-bottom: 1px solid black;
-           margin: 0 0 120px;
-           padding: 0 0 30px;
-         }
-         .main-title {
-           font-size: 20px;
-         }
-         .main-decription {
-           font-size: 20px;
-         }
-         .main-title {
-           font-size: 45px;
-         }
-         .main-subtitle {
-           font-size: 25px;
-           margin: 0 0 30px;
-         }
-         .code {
-           background: #f1f1f1;
-           display: inline-block;
-           font-size: 14px;
-           line-height: 28px;
-           margin: 10px 0 30px;
-           padding: 40px;
-           text-align: left;
-         }
-         .code small{
-           font-size: 12px;
-           color: #888;
-         }
-         .sprite-anim {
-           background-color: #f1f1f1;
-           margin: 20px auto 0;
-         }
-         .group .sprite-anim {
-           display: inline-block;
-         }
-         hr {
-           margin: 100px 0;
-         }
-         img {
-           display: block;
-           margin: 0 auto;
-           max-width: 500px;
-         }
-         .button {
-           background: #2980b9;
-           border: 0;
-           color: white;
-           cursor: crosshair;
-           display: block;
-           margin: 30px auto;
-           padding: 10px;
-           text-transform: uppercase;
-         }
-    </style>
+    <link  href="main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -126,10 +57,6 @@
           <p>Trigger animation when visible on scroll</p>
         </div>
         <img src="sprites/sprite01_180x204_11por9.png" />
-        <div class="sprite-anim config_min"></div>
-        <div class="sprite-anim config_min"></div>
-        <div class="sprite-anim config_min"></div>
-        <div class="sprite-anim config_min"></div>
         <div class="sprite-anim config_min"></div>
       </div>
       <hr>
@@ -180,32 +107,13 @@
       spriteanim = new SpriteAnim(spriteanimation_config);
 
       spriteanimation_config = {
-        element: document.getElementsByClassName('config_min')[1],
-        image: 'sprites/sprite01_180x204_11por9.png',
-        width: 180,
-        height: 204,
-        rows: '11,11,11,11,11,11,11,11,2',
+        element: document.getElementsByClassName('config_over')[0],
+        image: 'sprites/sprite02_280x280_14por7.png',
+        width: 280,
+        height: 280,
+        rows: '14,14,14,14,14,14,5',
         speed: 25,
-      };
-      spriteanim = new SpriteAnim(spriteanimation_config);
-
-      spriteanimation_config = {
-        element: document.getElementsByClassName('config_min')[2],
-        image: 'sprites/sprite01_180x204_11por9.png',
-        width: 180,
-        height: 204,
-        rows: '11,11,11,11,11,11,11,11,2',
-        speed: 25,
-      };
-      spriteanim = new SpriteAnim(spriteanimation_config);
-
-      spriteanimation_config = {
-        element: document.getElementsByClassName('config_min')[3],
-        image: 'sprites/sprite01_180x204_11por9.png',
-        width: 180,
-        height: 204,
-        rows: '11,11,11,11,11,11,11,11,2',
-        speed: 25,
+        over: true,
       };
       spriteanim = new SpriteAnim(spriteanimation_config);
 

@@ -15,7 +15,7 @@ function SpriteAnim(config) {
     this.top = this.element.offsetTop;
 
     this.init();
-};
+}
 
 SpriteAnim.prototype.init = function () {
     var self = this,
@@ -39,7 +39,7 @@ SpriteAnim.prototype.render = function() {
     self.set();
     self.config();
   });
-}
+};
 
 SpriteAnim.prototype.loadimage = function (callback) {
   var image = new Image(),
@@ -48,7 +48,7 @@ SpriteAnim.prototype.loadimage = function (callback) {
 
   image.onload = callback;
   image.src = self.image;
-}
+};
 
 SpriteAnim.prototype.set = function () {
     var y = (this.height * this.row) + (this.height * this.row_start),
@@ -76,12 +76,18 @@ SpriteAnim.prototype.config = function () {
   } else {
       window.addEventListener('scroll', function (e) {
         var y = window.scrollY,
-            play = (y + window.innerHeight) > self.top && y < (self.top + self.height);
-        (play) ? self.play() : self.stop();
+            play = (y + window.innerHeight) > self.top && y < (self.top + self.height)
+        ;
+
+        if(play) {
+          self.play();
+        } else {
+          self.stop();
+        }
       });
       window.scrollTo(window.scrollX, window.scrollY-1);
   }
-}
+};
 
 SpriteAnim.prototype.forward = function () {
     if(this.column < (this.rows[this.row] - 1)) {
