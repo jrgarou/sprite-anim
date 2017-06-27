@@ -76,14 +76,12 @@ SpriteAnim.prototype.config = function () {
   } else {
       window.addEventListener('scroll', function (e) {
         var y = window.scrollY,
-            play = (y + window.innerHeight) > self.top && y < (self.top + self.height)
+            play = (y + window.innerHeight) > self.top && y < (self.top + self.height),
+            action
         ;
 
-        if(play) {
-          self.play();
-        } else {
-          self.stop();
-        }
+        action = (play) ? self.play.bind(self) : self.stop.bind(self);
+        action();
       });
       window.scrollTo(window.scrollX, window.scrollY-1);
   }
