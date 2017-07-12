@@ -1,29 +1,25 @@
 function SpriteAnim(config) {
-    this.element = config.element;
-    this.image = config.image;
-    this.rows = config.rows.split(',');
-    this.width = config.width;
-    this.height = config.height;
-    this.speed = config.speed || 25;
-    this.over = config.over;
-    this.rewind_out = config.rewind_out;
-    this.element_over = config.element_over;
-    this.row_start = config.row_start || 0;
-    this.column_start = config.column_start || 0;
-    this.column = 0;
-    this.row = 0;
-    this.top = this.element.offsetTop;
+  this.element = config.element;
+  this.image = config.image;
+  this.rows = config.rows.split(',');
+  this.width = config.width;
+  this.height = config.height;
+  this.speed = config.speed || 25;
+  this.over = config.over;
+  this.rewind_out = config.rewind_out;
+  this.element_over = config.element_over;
+  this.row_start = config.row_start || 0;
+  this.column_start = config.column_start || 0;
+  this.column = 0;
+  this.row = 0;
+  this.top = this.element.offsetTop;
 
-    this.init();
+  this.init();
 }
 
 SpriteAnim.prototype.init = function () {
-    var self = this,
-        element_over
-        ;
-
-    this.setsize();
-    this.render();
+  this.setsize();
+  this.render();
 };
 
 SpriteAnim.prototype.setsize = function () {
@@ -41,49 +37,45 @@ SpriteAnim.prototype.render = function() {
   });
 };
 
-SpriteAnim.prototype.loadimage = function (callback) {
-  var image = new Image(),
-      self = this
-      ;
+SpriteAnim.prototype.set = function () {
+  var y = (this.height * this.row) + (this.height * this.row_start),
+      x = (this.width * this.column) + (this.width * this.column_start)
+  ;
 
-  image.onload = callback;
-  image.src = self.image;
+  this.element.style.backgroundPosition = -x + 'px ' + -y + 'px';
 };
 
-SpriteAnim.prototype.set = function () {
-    var y = (this.height * this.row) + (this.height * this.row_start),
-        x = (this.width * this.column) + (this.width * this.column_start)
-      ;
+SpriteAnim.prototype.loadimage = function (callback) {
+  var image = new Image();
 
-    this.element.style.backgroundPosition = -x + 'px ' + -y + 'px';
+  image.onload = callback;
+  image.src = this.image;
 };
 
 SpriteAnim.prototype.config = function () {
   var self = this,
-      element_over
-      ;
+      element_over,
+      mouse_out
+  ;
 
   if (self.over || self.element_over) {
-      element_over = (self.element_over) ? self.element_over : self.element;
+    element_over = (self.element_over) ? self.element_over : self.element;
+    mouse_out = (self.rewind_out) ? self.return.bind(self) : self.pause.bind(self);
 
-      element_over.addEventListener('mouseover', self.play.bind(self));
-
-      if (self.rewind_out) {
-          element_over.addEventListener('mouseout', self.return.bind(self));
-      } else {
-          element_over.addEventListener('mouseout', self.pause.bind(self));
-      }
+    element_over.addEventListener('mouseover', self.play.bind(self));
+    element_over.addEventListener('mouseout', mouse_out);
   } else {
-      window.addEventListener('scroll', function (e) {
-        var y = window.scrollY,
-            play = (y + window.innerHeight) > self.top && y < (self.top + self.height),
-            action
-        ;
+    window.addEventListener('scroll', function (e) {
+      var y = window.scrollY,
+          play = (y + window.innerHeight) > self.top && y < (self.top + self.height),
+          action
+      ;
 
-        action = (play) ? self.play.bind(self) : self.stop.bind(self);
-        action();
-      });
-      window.scrollTo(window.scrollX, window.scrollY-1);
+      action = (play) ? self.play.bind(self) : self.stop.bind(self);
+      action();
+    });
+
+    window.scrollTo(window.scrollX, window.scrollY + 1);
   }
 };
 
@@ -124,34 +116,32 @@ SpriteAnim.prototype.rewind = function () {
 };
 
 SpriteAnim.prototype.play = function () {
-    var self = this;
+  var self = this;
 
-    if(self.interval) clearInterval(self.interval);
+  if(self.interval) clearInterval(self.interval);
 
-    self.interval = setInterval(function() {
-        self.forward();
-    }, self.speed);
-
+  self.interval = setInterval(function() {
+    self.forward();
+  }, self.speed);
 };
 
 SpriteAnim.prototype.return = function () {
-    var self = this;
+  var self = this;
 
-    if(self.interval) clearInterval(self.interval);
+  if(self.interval) clearInterval(self.interval);
 
-    self.interval = setInterval(function() {
-        self.rewind();
-    }, (self.speed));
-
+  self.interval = setInterval(function() {
+    self.rewind();
+  }, (self.speed));
 };
 
 SpriteAnim.prototype.pause = function () {
-    if(this.interval) clearInterval(this.interval);
+  if(this.interval) clearInterval(this.interval);
 };
 
 SpriteAnim.prototype.stop = function () {
-    if(this.interval) clearInterval(this.interval);
-    this.column = 0;
-    this.row = 0;
-    this.set();
+  if(this.interval) clearInterval(this.interval);
+  this.column = 0;
+  this.row = 0;
+  this.set();
 };

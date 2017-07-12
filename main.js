@@ -96,4 +96,4 @@ window.onload = function (e) {
     row_start: 3,
   };
   spriteanim = new SpriteAnim(spriteanimation_config);
-}
+};

@@ -14,4 +14,11 @@ gulp.task('js', function() {
   ;
 });
 
-gulp.task('default', ['js']);
+gulp.task('main-js', function() {
+  return gulp.src(['./main.js'])
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'))
+  ;
+});
+
+gulp.task('default', ['js', 'main-js']);
